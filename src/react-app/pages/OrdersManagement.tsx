@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Search, Clock, CheckCircle, Truck, DollarSign, Eye } from 'lucide-react';
-import { useAuth } from '@/react-app/contexts/AuthContext';
 import { mockDB } from '@/react-app/data/mockDatabase';
 import { formatCurrency } from '@/react-app/utils/currency';
 
@@ -34,13 +33,11 @@ interface Order {
 }
 
 export default function OrdersManagement() {
-  const { user } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchOrders();
@@ -52,8 +49,6 @@ export default function OrdersManagement() {
       setOrders(data);
     } catch (error) {
       console.error('Error fetching orders:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -94,17 +89,6 @@ export default function OrdersManagement() {
     'restaurant': 'bg-green-100 text-green-800',
     'bar': 'bg-purple-100 text-purple-800'
   };
-
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="animate-pulse">
-          <div className="h-8 bg-slate-200 rounded w-1/3 mb-2"></div>
-          <div className="h-4 bg-slate-200 rounded w-1/2"></div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6">

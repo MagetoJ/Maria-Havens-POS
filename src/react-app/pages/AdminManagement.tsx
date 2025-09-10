@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Search, UserCog, Shield, User } from 'lucide-react';
-import { useAuth } from '@/react-app/contexts/AuthContext';
 import { mockDB } from '@/react-app/data/mockDatabase';
 
 interface AdminUser {
@@ -15,13 +14,10 @@ interface AdminUser {
 }
 
 export default function AdminManagement() {
-  const { user } = useAuth();
   const [adminUsers, setAdminUsers] = useState<AdminUser[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRole, setSelectedRole] = useState<AdminUser['role'] | 'all'>('all');
   const [showAddModal, setShowAddModal] = useState(false);
-  
-  const [loading, setLoading] = useState(true);
   
   const [newUser, setNewUser] = useState({
     name: '',
@@ -41,8 +37,6 @@ export default function AdminManagement() {
       setAdminUsers(data);
     } catch (error) {
       console.error('Error fetching admin users:', error);
-    } finally {
-      setLoading(false);
     }
   };
 

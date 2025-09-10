@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { TrendingUp, DollarSign, ShoppingCart, Users, Calendar, Download } from 'lucide-react';
-import { useAuth } from '@/react-app/contexts/AuthContext';
 import { mockDB } from '@/react-app/data/mockDatabase';
 import { formatCurrency } from '@/react-app/utils/currency';
 
