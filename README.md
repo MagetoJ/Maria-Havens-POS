@@ -1,94 +1,106 @@
-# Maria Havens POS
+# 🏨 Maria Havens POS System
 
-A modern Point of Sale system for Maria Havens Hotel built with React, Vite, and Cloudflare Workers.
+A comprehensive Point of Sale system designed for hotels and restaurants with room service capabilities.
 
-## Features
+## 🚀 Features
 
-- Modern React-based user interface
-- TypeScript for type safety
-- Tailwind CSS for styling
-- Cloudflare Workers for serverless backend
-- D1 Database integration
-- Mobile-responsive design
+- **Menu Management**: Full CRUD operations for menu items with categories
+- **Guest Management**: Hotel guest registration and room assignments
+- **Order Processing**: Complete order lifecycle with status tracking
+- **Payment Processing**: Multiple payment methods (cash, card, room charge, mobile)
+- **Reporting**: Sales and payment analytics with date filtering
+- **Authentication**: Token-based API authentication
+- **Admin Panel**: Django admin interface for data management
 
-## Getting Started
+## 🛠️ Tech Stack
 
-### Prerequisites
+- **Backend**: Django 5.0 + Django REST Framework
+- **Database**: PostgreSQL (production) / SQLite (development)
+- **Authentication**: Token-based authentication
+- **Deployment**: Render, Railway, or Heroku compatible
 
-- Node.js 18 or higher
-- npm or yarn package manager
+## 📡 API Endpoints
+
+### Authentication
+- `POST /api/auth/login/` - Get authentication token
+
+### Core APIs
+- **Menu**: `/menu/api/items/` - Menu items management
+- **Guests**: `/guests/api/` - Guest management
+- **Orders**: `/orders/api/orders/` - Order processing
+- **Payments**: `/payments/api/` - Payment handling
+- **Reports**: `/reports/api/sales/` & `/reports/api/payments/` - Analytics
+
+## 🚀 Quick Deploy
+
+### Deploy to Render
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+1. Fork this repository
+2. Connect to Render
+3. Use the `render.yaml` configuration
+4. Set environment variables:
+   - `SECRET_KEY` (auto-generated)
+   - `DATABASE_URL` (auto-configured)
 
 ### Local Development
 
-1. Clone the repository:
-```bash
-git clone https://github.com/MagetoJ/mariahavenspos.git
-cd mariahavenspos
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and navigate to `http://localhost:5173`
-
-### Building for Production
+See [LOCAL_DEPLOYMENT.md](LOCAL_DEPLOYMENT.md) for detailed setup instructions.
 
 ```bash
-npm run build
+# Quick start
+git clone <your-repo-url>
+cd maria-havens-pos
+pip install -r requirements.txt
+python manage.py migrate
+python create_superuser.py
+python manage.py runserver
 ```
 
-## Deployment
+## 🔐 Default Credentials
 
-### Vercel Deployment
+- **Email**: jabezmageto78@gmail.com
+- **Password**: lokeshen@58
 
-This project is configured for deployment on Vercel:
+## 📖 API Documentation
 
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Vercel will automatically deploy your application using the settings in `vercel.json`
+Detailed API documentation is available in [API_README.md](API_README.md)
 
-### Cloudflare Workers Deployment
+## 🧪 Testing
 
-For full-stack deployment with Cloudflare Workers:
-
+Run the included test suite:
 ```bash
-npm run check
-wrangler deploy
+python test_api.py
 ```
 
-## Environment Variables
-
-Copy `.env.example` to `.env.local` and configure the required environment variables for your local development.
-
-## Project Structure
+## 📂 Project Structure
 
 ```
-src/
-├── react-app/          # Frontend React application
-│   ├── components/     # Reusable React components
-│   ├── contexts/       # React contexts
-│   ├── pages/          # Page components
-│   ├── hooks/          # Custom React hooks
-│   └── utils/          # Utility functions
-├── worker/             # Cloudflare Workers backend
-└── shared/             # Shared types and utilities
+maria-havens-pos/
+├── backend/           # Django settings
+├── menu/             # Menu management
+├── orders/           # Order processing  
+├── guests/           # Guest management
+├── payments/         # Payment processing
+├── reports/          # Analytics & reporting
+├── requirements.txt  # Dependencies
+├── render.yaml      # Render deployment config
+└── build.sh         # Build script
 ```
 
-## Contributing
+## 🌟 Sample Data
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+The system includes sample data for testing:
+- 6 menu items across different categories
+- 3 hotel guests with room assignments
+- 2 sample orders with payments
+- Reporting data for analytics testing
 
-## Support
+## 📞 Support
 
-This app was created using [Mocha](https://getmocha.com).
-Need help or want to join the community? Join our [Discord](https://discord.gg/shDEGBSe2d).
+For issues and questions, please create an issue in this repository.
+
+## 📄 License
+
+This project is licensed under the MIT License.

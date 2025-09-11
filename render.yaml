@@ -1,0 +1,20 @@
+databases:
+  - name: maria-havens-pos-db
+    databaseName: maria_havens_pos
+    user: maria_havens_user
+
+services:
+  - type: web
+    name: maria-havens-pos-backend
+    runtime: python3
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn backend.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: maria-havens-pos-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
